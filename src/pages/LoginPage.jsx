@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, FloatingLabel, Container } from 'react-bootstrap';
+import { Form, Button, FloatingLabel, Container, Col, Image, Row } from 'react-bootstrap';
 import './styles/LoginPage.css';
 import PropTypes from 'prop-types';
+import loginImage from '../images/loginIcon.svg';
 
 const LoginPage = ({ history }) => {
   /* ------SETANDO ESTADOS--------- */
@@ -51,6 +52,11 @@ const LoginPage = ({ history }) => {
   return (
     <Container className="login-container">
       <h1 className="mb-4">Login</h1>
+      <Row className="justify-content-center">
+        <Col xs={ 8 } md={ 4 }>
+          <Image src={ loginImage } rounded fluid className="login-icon" />
+        </Col>
+      </Row>
       <Form>
         <FloatingLabel
           controlId="floatingInput"
