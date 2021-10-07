@@ -1,0 +1,57 @@
+.loading-container {
+  background-color: var(--default-bg);
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes sleep {
+  from {
+    transform: translate(0, 15px)
+  }
+  to{
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes mouth {
+  to {
+    transform: scaleY(1.009);
+  }
+}
+
+@keyframes flyingBirds {
+  to {
+    transform: translateX(-100vw);
+    opacity: 0;
+  }
+}
+
+@keyframes loadingWord {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+}
+
+#mouth {
+  animation: mouth 2s linear infinite alternate
+}
+
+#z1, #z2, #z3 {
+  animation: sleep 2s linear infinite alternate;
+}
+
+#bird1, #bird2, #bird3 {
+  animation: flyingBirds 10s ease-out infinite normal
+}
+
+#letter1, #letter2, #letter3,
+#letter4, #letter5, #letter6, #letter7 { 
+  animation: loadingWord 1s alternate infinite;
+}
