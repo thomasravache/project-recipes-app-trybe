@@ -45,6 +45,6 @@
 }
 
 .login-icon {
-  animation: floatLogin 1.1s ease 0s infinite alternate both;
+  animation: floatLogin 1.1s ease 0s 5 alternate both;
   margin-bottom: 0.5rem;
 }
