@@ -6,6 +6,7 @@ import RecipesContext from '../context/RecipesContext';
 import Footer from '../components/Footer';
 import RecipesCards from '../components/RecipesCards';
 import recipeAPI from '../services/recipeAPI';
+import Loading from '../components/Loading';
 
 const CocktailRecipePage = () => {
   const {
@@ -21,6 +22,7 @@ const CocktailRecipePage = () => {
   const sizeListRecipes = 12;
   const sizeListCategorys = 5;
   const [categoriesButtonToggler, setCategoriesButtonToggler] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   /** Faz as requisições para mostrar as categorias e as receitas */
   const requestAPI = async () => {
@@ -39,6 +41,7 @@ const CocktailRecipePage = () => {
         active: true,
       }
     )));
+    setIsLoading(false);
   };
 
   /** Função que envia a categoria pro provider */
@@ -76,6 +79,8 @@ const CocktailRecipePage = () => {
       setExploredIngredient('');
     };
   }, []);
+
+  if (isLoading) return <Loading />;
 
   return (
     <>

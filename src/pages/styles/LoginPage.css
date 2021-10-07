@@ -10,10 +10,27 @@
   transform: translate(-50%, -50%);
 }
 
+@keyframes tracking-in-contract-bck {
+
+  0% {
+    letter-spacing: 1em;
+    transform: translateZ(400px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
 .login-container h1 {
   color: #2d6a4f;
   font-size: 2.56rem;
   text-shadow: 4px 4px 8px rgba(150, 150, 150, 1);
+  animation: tracking-in-contract-bck 2s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
 }
 
 @keyframes floatLogin {
