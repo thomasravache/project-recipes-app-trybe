@@ -19,7 +19,13 @@ const RecipesCards = ({ nameValue, indexValue, thumbValue, onClick, styles }) =>
     <Card.Header
       className="d-flex align-items-center justify-content-center"
       data-testid={ `${indexValue}-card-name` }
-      style={ { height: '100%' } }
+      style={ {
+        height: '100%',
+        color: 'white',
+        backgroundColor: '#1B4332',
+        borderRadius: '0 0 0.25rem 0.25rem',
+        borderBottom: '1px solid 1px solid rgba(0,0,0,.125)',
+      } }
     >
       { nameValue }
     </Card.Header>
@@ -31,6 +37,7 @@ RecipesCards.propTypes = {
   indexValue: PropTypes.number.isRequired,
   thumbValue: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  styles: PropTypes.string.isRequired,
 };
 
 export default RecipesCards;
