@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 // import { Redirect } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
 // import RecipeCard from './RecipeCard';
+import './styles/searchbar.css';
 
 // Criado os services api separados para comida e bebida
 // os inputs do tipo radio possuem o mesmo name="name-search" para ser apenas um selecionado por vez.
@@ -66,7 +67,7 @@ function SearchBar() {
   }
 
   return (
-    <div>
+    <div className="slide-in-effect">
       <h1>sou o SearchBar</h1>
       <input
         type="text"
