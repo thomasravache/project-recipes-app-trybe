@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { CardGroup } from 'react-bootstrap';
+import { CardGroup, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import Header from '../components/Header';
 import SearchBar from '../components/Searchbar';
 import RecipesCards from '../components/RecipesCards';
@@ -8,6 +8,7 @@ import RecipesContext from '../context/RecipesContext';
 import Footer from '../components/Footer';
 import recipeAPI from '../services/recipeAPI';
 import Loading from '../components/Loading';
+import './styles/mealRecipePage.css';
 
 const MealRecipePage = () => {
   const {
@@ -96,37 +97,47 @@ const MealRecipePage = () => {
 
   if (isLoading) return <Loading />;
 
+  const toggleStyle = {
+    borderRadius: '0',
+  };
+
   return (
-    <>
-      <div>
+    <div className="meals-container">
+      <nav>
         <Header pageTitle="Comidas" />
         {searchOrHeader ? <SearchBar /> : '' }
-      </div>
+      </nav>
 
       {/** Mostra 5 botões com as primeiras cateforias da requisição */}
-      <div>
-        <button
+      <ToggleButtonGroup type="radio" name="options" defaultValue={ 1 } className="d-flex flex-wrap">
+        <ToggleButton
           data-testid="All-category-filter"
-          type="button"
+          value={ 1 }
+          id="tbg-radio-1"
           onClick={ handleClickFilterAll }
+          variant="success"
+          style={ toggleStyle }
         >
           All
-        </button>
+        </ToggleButton>
         {
           categorys
             .slice(0, sizeListCategorys)
             .map((category, index) => (
-              <button
+              <ToggleButton
                 data-testid={ `${category.strCategory}-category-filter` }
                 key={ index }
-                type="button"
+                value={ index + 2 }
+                id={ `tbg-radio-${index + 2}` }
                 onClick={ () => handleFilterCategory(category.strCategory) }
+                variant="success"
+                style={ toggleStyle }
               >
                 { category.strCategory }
-              </button>
+              </ToggleButton>
             ))
         }
-      </div>
+      </ToggleButtonGroup>
       <h2>
         {exploredIngredient !== '' && `Filtro de ingrediente: ${exploredIngredient}`}
       </h2>
@@ -148,7 +159,7 @@ const MealRecipePage = () => {
         }
       </CardGroup>
       <Footer />
-    </>
+    </div>
   );
 };
 
