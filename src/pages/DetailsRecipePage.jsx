@@ -101,7 +101,7 @@ const DetailsRecipePage = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <Container fluid>
+    <Container fluid className="fade-in-effect">
       <Row>
         <Col className="column-container">
           <Image
