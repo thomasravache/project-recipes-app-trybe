@@ -20,7 +20,6 @@ const FavoriteRecipesPage = () => {
     <div className="fade-in-effect bg-default">
       <Header pageTitle="Receitas Favoritas" showSearch={ false } />
       {searchOrHeader ? <SearchBar /> : '' }
-      <hr />
       <ToggleButtonGroup
         type="radio"
         name="options"
@@ -55,22 +54,30 @@ const FavoriteRecipesPage = () => {
           Drinks
         </ToggleButton>
       </ToggleButtonGroup>
-      {favoriteRecipes !== null ? favoriteRecipes
-        .filter((favoriteRecipe) => favoriteRecipe.type.includes(filter))
-        .map((favoriteRecipe, index) => (
-          <FavoriteCard
-            key={ index }
-            idValue={ favoriteRecipe.id }
-            typeValue={ favoriteRecipe.type }
-            areaValue={ favoriteRecipe.area }
-            categoryValue={ favoriteRecipe.category }
-            alcoholicOrNotValue={ favoriteRecipe.alcoholicOrNot }
-            nameValue={ favoriteRecipe.name }
-            imgValue={ favoriteRecipe.image }
-            indexValue={ index }
-            setFavoriteRecipes={ setFavoriteRecipes }
-          />
-        )) : <h1>Nenhum receita favorita encontrada</h1>}
+      <div
+        style={
+          {
+            marginBottom: '3.9rem',
+          }
+        }
+      >
+        {favoriteRecipes !== null ? favoriteRecipes
+          .filter((favoriteRecipe) => favoriteRecipe.type.includes(filter))
+          .map((favoriteRecipe, index) => (
+            <FavoriteCard
+              key={ index }
+              idValue={ favoriteRecipe.id }
+              typeValue={ favoriteRecipe.type }
+              areaValue={ favoriteRecipe.area }
+              categoryValue={ favoriteRecipe.category }
+              alcoholicOrNotValue={ favoriteRecipe.alcoholicOrNot }
+              nameValue={ favoriteRecipe.name }
+              imgValue={ favoriteRecipe.image }
+              indexValue={ index }
+              setFavoriteRecipes={ setFavoriteRecipes }
+            />
+          )) : <h3>Nenhum receita favorita encontrada</h3>}
+      </div>
       <Footer />
     </div>
   );

@@ -55,7 +55,13 @@ const FavoriteCard = ({ indexValue,
   };
 
   return (
-    <div className="container-cards">
+    <div
+      className="container-cards"
+      style={
+        {
+          backgroundColor: '#40916C',
+        }
+        }>
       <div className="img-card">
         <Link to={ `/${typeValue}s/${idValue}` }>
           <img
@@ -69,6 +75,11 @@ const FavoriteCard = ({ indexValue,
         <span
           data-testid={ `${indexValue}-horizontal-top-text` }
           className="category-card"
+          style={
+            {
+              color: '#B7E4C7',
+            }
+          }
         >
           { `${areaValue || alcoholicOrNotValue} - ${categoryValue}` }
         </span>
@@ -76,7 +87,15 @@ const FavoriteCard = ({ indexValue,
           data-testid={ `${indexValue}-horizontal-name` }
           className="name-card"
         >
-          <Link to={ `/${typeValue}s/${idValue}` }>
+          <Link
+            to={ `/${typeValue}s/${idValue}` }
+            style={
+              {
+                textDecoration: 'none',
+                color: 'white',
+              }
+            }
+          >
             { nameValue }
           </Link>
         </span>
