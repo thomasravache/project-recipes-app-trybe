@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import Header from '../components/Header';
 import FavoriteCard from '../components/FavoriteCard';
@@ -6,15 +6,24 @@ import SearchBar from '../components/Searchbar';
 import RecipesContext from '../context/RecipesContext';
 import Footer from '../components/Footer';
 
-const START_FAVORITES = JSON.parse(localStorage.getItem('favoriteRecipes'));
-
 const FavoriteRecipesPage = () => {
   const { searchOrHeader } = useContext(RecipesContext);
-  const [favoriteRecipes, setFavoriteRecipes] = useState(START_FAVORITES);
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [filter, setFilter] = useState('');
   const handleClickFilter = (filterValue) => {
     setFilter(filterValue);
   };
+
+  useEffect(() => {
+    const verifyFavoriteRecipesExistence = () => {
+      const favoriteRecipesStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
+      if (favoriteRecipesStorage === null) {
+        localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+      }
+    };
+    verifyFavoriteRecipesExistence();
+    setFavoriteRecipes(JSON.parse(localStorage.getItem('favoriteRecipes')));
+  }, []);
 
   return (
     <div className="fade-in-effect bg-default">
@@ -61,7 +70,7 @@ const FavoriteRecipesPage = () => {
           }
         }
       >
-        {favoriteRecipes !== null ? favoriteRecipes
+        {(favoriteRecipes.length !== 0) ? favoriteRecipes
           .filter((favoriteRecipe) => favoriteRecipe.type.includes(filter))
           .map((favoriteRecipe, index) => (
             <FavoriteCard
@@ -76,7 +85,7 @@ const FavoriteRecipesPage = () => {
               indexValue={ index }
               setFavoriteRecipes={ setFavoriteRecipes }
             />
-          )) : <h3>Nenhum receita favorita encontrada</h3>}
+          )) : <h5>Nenhuma receita favorita encontrada</h5>}
       </div>
       <Footer />
     </div>
