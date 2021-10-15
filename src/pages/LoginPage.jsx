@@ -60,7 +60,7 @@ const LoginPage = ({ history }) => {
       <Form>
         <FloatingLabel
           controlId="floatingInput"
-          label="Email"
+          label="E-mail"
           className="mb-3"
         >
           <Form.Control
