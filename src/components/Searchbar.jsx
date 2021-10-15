@@ -17,7 +17,7 @@ const STARTER_INPUT = '';
 function SearchBar() {
   const history = useHistory();
   const [inputValue, setInputValue] = useState(STARTER_INPUT);
-  const [searchOption, setOption] = useState(STARTER_OPTION);
+  const [searchOption, setOption] = useState('ingredients');
   const { recipeAPI,
     mealOrDrink,
     searchOrHeader,
@@ -97,6 +97,7 @@ function SearchBar() {
           <Col>
             <Form.Check
               data-testid="ingredient-search-radio"
+              defaultChecked="true"
               name="option-radio"
               className="ingredients-search"
               type="radio"
