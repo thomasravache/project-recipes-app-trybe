@@ -52,7 +52,7 @@ const MakeRecipesPage = () => {
           variant="success"
           onClick={ () => handleClickFilter('bebida') }
         >
-          Driks
+          Drinks
         </ToggleButton>
       </ToggleButtonGroup>
       <hr />
