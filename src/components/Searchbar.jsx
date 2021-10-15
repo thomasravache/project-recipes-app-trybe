@@ -68,8 +68,7 @@ function SearchBar() {
   }
 
   return (
-    <Container className="slide-in-effect mb-1">
-      <h1>SearchBar</h1>
+    <Container className="slide-in-effect mb-1 mt-1">
       <Form>
         <Row className="g-2">
           <Col xs={ 9 }>
@@ -78,6 +77,7 @@ function SearchBar() {
               data-testid="search-input"
               value={ inputValue }
               onChange={ (e) => setInputValue(e.target.value) }
+              placeholder="Faça sua busca aqui!"
               // maxLength={ maxLength }
               fluid
             />
