@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { CardGroup } from 'react-bootstrap';
+import { CardGroup, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import Header from '../components/Header';
 import SearchBar from '../components/Searchbar';
 import RecipesContext from '../context/RecipesContext';
@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 import RecipesCards from '../components/RecipesCards';
 import recipeAPI from '../services/recipeAPI';
 import Loading from '../components/Loading';
+import './styles/mealOrCocktailPage.css';
 
 const CocktailRecipePage = () => {
   const {
@@ -97,8 +98,12 @@ const CocktailRecipePage = () => {
 
   if (isLoading) return <Loading />;
 
+  const toggleStyle = {
+    borderRadius: '0',
+  };
+
   return (
-    <>
+    <div className="meal-or-cocktail-container">
       <div>
         <Header pageTitle="Bebidas" />
         {searchOrHeader ? <SearchBar /> : '' }
@@ -112,34 +117,45 @@ const CocktailRecipePage = () => {
       </div>
 
       {/** Mostra 5 botões com as primeiras cateforias da requisição */}
-      <div>
-        <button
+      <ToggleButtonGroup
+        type="radio"
+        name="options"
+        defaultValue={ 1 }
+        className="d-flex flex-wrap"
+      >
+        <ToggleButton
           data-testid="All-category-filter"
-          type="button"
+          value={ 1 }
+          id="tbg-radio-1"
           onClick={ handleClickFilterAll }
+          variant="success"
+          style={ toggleStyle }
         >
           All
-        </button>
+        </ToggleButton>
         {
           categorys
             .slice(0, sizeListCategorys)
             .map((category, index) => (
-              <button
+              <ToggleButton
                 data-testid={ `${category.strCategory}-category-filter` }
                 key={ index }
-                type="button"
+                value={ index + 2 }
+                id={ `tbg-radio-${index + 2}` }
                 onClick={ () => handleFilterCategory(category.strCategory) }
+                variant="success"
+                style={ toggleStyle }
               >
                 { category.strCategory }
-              </button>
+              </ToggleButton>
             ))
         }
-      </div>
+      </ToggleButtonGroup>
       <h2>
         {exploredIngredient !== '' && `Filtro de ingrediente: ${exploredIngredient}`}
       </h2>
       {/** Renderiza os Cards com as Comidas */}
-      <CardGroup className="d-flex flex-wrap justify-content-around mb-5 mt-4">
+      <CardGroup className="d-flex flex-wrap justify-content-around mb-5 mt-4 card-group-container">
         {
           recipes
             .slice(0, sizeListRecipes)
@@ -156,7 +172,7 @@ const CocktailRecipePage = () => {
         }
       </CardGroup>
       <Footer />
-    </>
+    </div>
   );
 };
 

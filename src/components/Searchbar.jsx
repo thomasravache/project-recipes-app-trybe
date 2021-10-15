@@ -1,6 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import React, { useContext, useState } from 'react';
 // import { Redirect } from 'react-router-dom';
+import { Button, Container, Form, Row, Col } from 'react-bootstrap';
 import RecipesContext from '../context/RecipesContext';
 // import RecipeCard from './RecipeCard';
 import './styles/searchbar.css';
@@ -67,64 +68,70 @@ function SearchBar() {
   }
 
   return (
-    <div className="slide-in-effect">
-      <h1>sou o SearchBar</h1>
-      <input
-        type="text"
-        data-testid="search-input"
-        value={ inputValue }
-        onChange={ (e) => setInputValue(e.target.value) }
-        // maxLength={ maxLength }
-      />
-      <label htmlFor="ingredients-search">
-        Ingredientes:
-        <input
-          data-testid="ingredient-search-radio"
-          name="option-radio"
-          className="ingredients-search"
-          type="radio"
-          value="ingredients"
-          onClick={ (e) => setOption(e.target.value) }
-          // onChange={ checkIfFirstLetter }
-        />
-      </label>
-
-      <label htmlFor="name-search">
-        Nome:
-        <input
-          data-testid="name-search-radio"
-          name="option-radio"
-          className="name-search"
-          type="radio"
-          value="name"
-          onClick={ (e) => setOption(e.target.value) }
-          // onChange={ checkIfFirstLetter }
-        />
-      </label>
-
-      <label htmlFor="first-letter-search">
-        Primeira Letra:
-        <input
-          data-testid="first-letter-search-radio"
-          name="option-radio"
-          className="first-letter-search"
-          type="radio"
-          value="first-letter"
-          onClick={ (e) => setOption(e.target.value) }
-          // onChange={ checkIfFirstLetter }
-        />
-      </label>
-
-      <button
-        type="button"
-        data-testid="exec-search-btn"
-        onClick={ onClickButton }
-      >
-        Botão de Busca
-
-      </button>
-
-    </div>
+    <Container className="slide-in-effect mb-1">
+      <h1>SearchBar</h1>
+      <Form>
+        <Row className="g-2">
+          <Col xs={ 9 }>
+            <Form.Control
+              type="text"
+              data-testid="search-input"
+              value={ inputValue }
+              onChange={ (e) => setInputValue(e.target.value) }
+              // maxLength={ maxLength }
+              fluid
+            />
+          </Col>
+          <Col xs={ 3 }>
+            <Button
+              type="button"
+              data-testid="exec-search-btn"
+              onClick={ onClickButton }
+              variant="success"
+            >
+              Buscar
+            </Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Form.Check
+              data-testid="ingredient-search-radio"
+              name="option-radio"
+              className="ingredients-search"
+              type="radio"
+              value="ingredients"
+              onClick={ (e) => setOption(e.target.value) }
+              label="Ingredientes"
+              id="ingredients"
+              // onChange={ checkIfFirstLetter }
+            />
+            <Form.Check
+              data-testid="name-search-radio"
+              name="option-radio"
+              className="name-search"
+              type="radio"
+              value="name"
+              onClick={ (e) => setOption(e.target.value) }
+              label="Nome"
+              id="name"
+              // onChange={ checkIfFirstLetter }
+            />
+            <Form.Check
+              data-testid="first-letter-search-radio"
+              name="option-radio"
+              className="first-letter-search"
+              type="radio"
+              value="first-letter"
+              onClick={ (e) => setOption(e.target.value) }
+              label="Primeira Letra"
+              id="first-letter"
+              // onChange={ checkIfFirstLetter }
+            />
+          </Col>
+        </Row>
+      </Form>
+    </Container>
 
   );
 }

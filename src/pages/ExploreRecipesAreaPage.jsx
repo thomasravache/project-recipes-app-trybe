@@ -1,11 +1,14 @@
-import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { CardGroup, Form } from 'react-bootstrap';
 import Header from '../components/Header';
 import RecipesCards from '../components/RecipesCards';
 import SearchBar from '../components/Searchbar';
 import RecipesContext from '../context/RecipesContext';
 import recipeAPI from '../services/recipeAPI';
 import Footer from '../components/Footer';
+import Loading from '../components/Loading';
+import './styles/mealOrCocktailPage.css';
 
 const ExploreRecipesAreaPage = () => {
   const {
@@ -16,9 +19,23 @@ const ExploreRecipesAreaPage = () => {
     setCategorys,
   } = useContext(RecipesContext);
   const sizeListRecipes = 12;
+  const RECIPES_CARD_STYLE = 'recipe-card card-block';
+  const ONE_SECOND = 1000;
+  const [CardClass, setCardClass] = useState(RECIPES_CARD_STYLE);
+  const [isLoading, setIsLoading] = useState(true);
+  const history = useHistory();
+
+  const reRenderAnimation = () => {
+    setCardClass('recipe-card-out card-block');
+    const classTimeOut = setTimeout(() => {
+      setCardClass(RECIPES_CARD_STYLE);
+      clearTimeout(classTimeOut);
+    }, ONE_SECOND);
+  };
 
   /** Seta no estado o valor vindo do filtro */
   const handleFilterArea = async (event) => {
+    reRenderAnimation();
     const { target: { value } } = event;
     const dataFilterMeal = await recipeAPI('category', value, 'meal', 'a');
     console.log(dataFilterMeal, value);
@@ -32,17 +49,20 @@ const ExploreRecipesAreaPage = () => {
       const dataArea = await recipeAPI('listCategorys', '', 'meal', 'a');
       setCategorys(dataArea.meals);
       setRecipes(dataMeal.meals);
+      setIsLoading(false);
     };
     requestAPI();
   }, [setRecipes, setCategorys]);
 
+  if (isLoading) return <Loading />;
+
   return (
-    <div>
+    <div className="bg-default">
       <Header pageTitle="Explorar Origem" />
       {searchOrHeader ? <SearchBar /> : '' }
 
       {/** Filtrar por Origem */}
-      <select
+      <Form.Select
         data-testid="explore-by-area-dropdown"
         onChange={ (event) => handleFilterArea(event) }
       >
@@ -65,24 +85,27 @@ const ExploreRecipesAreaPage = () => {
               </option>
             ))
         }
-      </select>
+      </Form.Select>
 
       {/** Renderiza os Cards com as Comidas */}
-      <div style={ { display: 'flex', flexWrap: 'wrap' } }>
+      <CardGroup
+        className="d-flex flex-wrap justify-content-around mb-5 mt-4 card-group-container"
+      >
         {
           recipes
             .slice(0, sizeListRecipes)
             .map((recipe, index) => (
-              <Link key={ index } to={ `/comidas/${recipe.idMeal}` }>
-                <RecipesCards
-                  nameValue={ recipe.strMeal }
-                  indexValue={ index }
-                  thumbValue={ recipe.strMealThumb }
-                />
-              </Link>
+              <RecipesCards
+                key={ index }
+                nameValue={ recipe.strMeal }
+                indexValue={ index }
+                thumbValue={ recipe.strMealThumb }
+                onClick={ () => history.push(`/comidas/${recipe.idMeal}`) }
+                styles={ CardClass }
+              />
             ))
         }
-      </div>
+      </CardGroup>
       <Footer />
     </div>
   );

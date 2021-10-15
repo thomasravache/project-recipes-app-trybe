@@ -14,25 +14,25 @@ const ExploreMeal = () => {
   };
 
   return (
-    <div>
+    <div className="fade-in-effect bg-default">
       <Header pageTitle="Explorar Comidas" showSearch={ false } />
       <Stack gap={ 2 } className="col-md-5 mx-auto mt-4">
         <Button
-          variant="secondary"
+          variant="success"
           href="/explorar/comidas/ingredientes"
           data-testid="explore-by-ingredient"
         >
           Por Ingredientes
         </Button>
         <Button
-          variant="secondary"
+          variant="success"
           href="/explorar/comidas/area"
           data-testid="explore-by-area"
         >
           Por Local de Origem
         </Button>
         <Button
-          variant="secondary"
+          variant="success"
           data-testid="explore-surprise"
           onClick={ handleClickRandomMeal }
         >

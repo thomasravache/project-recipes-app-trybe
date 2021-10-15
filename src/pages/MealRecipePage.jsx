@@ -8,7 +8,7 @@ import RecipesContext from '../context/RecipesContext';
 import Footer from '../components/Footer';
 import recipeAPI from '../services/recipeAPI';
 import Loading from '../components/Loading';
-import './styles/mealRecipePage.css';
+import './styles/mealOrCocktailPage.css';
 
 const MealRecipePage = () => {
   const {
@@ -102,14 +102,19 @@ const MealRecipePage = () => {
   };
 
   return (
-    <div className="meals-container">
+    <div className="meal-or-cocktail-container">
       <nav>
         <Header pageTitle="Comidas" />
         {searchOrHeader ? <SearchBar /> : '' }
       </nav>
 
       {/** Mostra 5 botões com as primeiras cateforias da requisição */}
-      <ToggleButtonGroup type="radio" name="options" defaultValue={ 1 } className="d-flex flex-wrap">
+      <ToggleButtonGroup
+        type="radio"
+        name="options"
+        defaultValue={ 1 }
+        className="d-flex flex-wrap"
+      >
         <ToggleButton
           data-testid="All-category-filter"
           value={ 1 }
@@ -142,7 +147,9 @@ const MealRecipePage = () => {
         {exploredIngredient !== '' && `Filtro de ingrediente: ${exploredIngredient}`}
       </h2>
       {/** Renderiza os Cards com as Comidas */}
-      <CardGroup className="d-flex flex-wrap justify-content-around mb-5 mt-4">
+      <CardGroup
+        className="d-flex flex-wrap justify-content-around mb-5 mt-4 card-group-container"
+      >
         {
           recipes
             .slice(0, sizeListRecipes)

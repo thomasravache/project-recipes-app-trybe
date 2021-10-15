@@ -51,7 +51,7 @@ const LoginPage = ({ history }) => {
 
   return (
     <Container className="login-container">
-      <h1 className="mb-4">Login</h1>
+      <h1 className="mb-4">Recettes</h1>
       <Row className="justify-content-center">
         <Col xs={ 8 } md={ 4 }>
           <Image src={ loginImage } rounded fluid className="login-icon" />

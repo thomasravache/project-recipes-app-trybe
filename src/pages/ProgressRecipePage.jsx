@@ -88,7 +88,7 @@ const DetailsRecipePage = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <Container fluid>
+    <Container fluid className="fade-in-effect bg-default">
       <Row>
         <Col className="column-container">
           <Image
@@ -101,7 +101,7 @@ const DetailsRecipePage = () => {
         </Col>
       </Row>
       <Row className="mt-3">
-        <Col xs={ 8 }>
+        <Col xs={ 8 } className="column-container">
           <h4 data-testid="recipe-title">{recipeDetails[`str${recipeType}`]}</h4>
         </Col>
         <Col>
@@ -116,7 +116,7 @@ const DetailsRecipePage = () => {
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col className="column-container">
           <h6 data-testid="recipe-category">{isMeal ? strCategory : strAlcoholic}</h6>
         </Col>
       </Row>
@@ -128,7 +128,7 @@ const DetailsRecipePage = () => {
               <ListGroup.Item
                 id={ ingredient }
                 key={ `${ingredient} - ${measures[index]}` }
-                variant="light"
+                variant="success"
               >
                 <label
                   htmlFor={ `${index}-ingredient-step` }
@@ -157,8 +157,8 @@ const DetailsRecipePage = () => {
           </ListGroup>
         </Col>
       </Row>
-      <Row style={ { marginTop: '1rem' } }>
-        <Col>
+      <Row style={ { marginTop: '1rem' } } className="mb-5">
+        <Col className="column-container">
           <h5>Instructions</h5>
           <p data-testid="instructions">{ strInstructions }</p>
         </Col>

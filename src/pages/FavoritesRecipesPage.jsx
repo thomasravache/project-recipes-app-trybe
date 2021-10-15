@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
+import { ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import Header from '../components/Header';
 import FavoriteCard from '../components/FavoriteCard';
 import SearchBar from '../components/Searchbar';
 import RecipesContext from '../context/RecipesContext';
+import Footer from '../components/Footer';
 
 const START_FAVORITES = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
@@ -15,33 +17,44 @@ const FavoriteRecipesPage = () => {
   };
 
   return (
-    <div>
+    <div className="fade-in-effect bg-default">
       <Header pageTitle="Receitas Favoritas" showSearch={ false } />
       {searchOrHeader ? <SearchBar /> : '' }
       <hr />
-      <div style={ { textAlign: 'center' } }>
-        <button
+      <ToggleButtonGroup
+        type="radio"
+        name="options"
+        defaultValue={ 1 }
+        className="d-flex flex-wrap"
+      >
+        <ToggleButton
           data-testid="filter-by-all-btn"
-          type="button"
+          value={ 1 }
+          id="tbg-radio-1"
+          variant="success"
           onClick={ () => handleClickFilter('') }
         >
           All
-        </button>
-        <button
+        </ToggleButton>
+        <ToggleButton
           data-testid="filter-by-food-btn"
-          type="button"
+          value={ 2 }
+          id="tbg-radio-2"
+          variant="success"
           onClick={ () => handleClickFilter('comida') }
         >
           Food
-        </button>
-        <button
+        </ToggleButton>
+        <ToggleButton
           data-testid="filter-by-drink-btn"
-          type="button"
+          value={ 3 }
+          id="tbg-radio-3"
+          variant="success"
           onClick={ () => handleClickFilter('bebida') }
         >
           Drinks
-        </button>
-      </div>
+        </ToggleButton>
+      </ToggleButtonGroup>
       {favoriteRecipes !== null ? favoriteRecipes
         .filter((favoriteRecipe) => favoriteRecipe.type.includes(filter))
         .map((favoriteRecipe, index) => (
@@ -58,6 +71,7 @@ const FavoriteRecipesPage = () => {
             setFavoriteRecipes={ setFavoriteRecipes }
           />
         )) : <h1>Nenhum receita favorita encontrada</h1>}
+      <Footer />
     </div>
   );
 };

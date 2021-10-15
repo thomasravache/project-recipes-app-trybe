@@ -1,11 +1,17 @@
 :root {
 
-  --default-bg: #d8f3dc;
   --default-header-bg: #2D6A4F;
+
   --default-footer-bg: #52B788;
+
+  --default-bg: #d8f3dc;
 }
 
 html {
+  background-color: var(--default-bg);
+}
+
+.bg-default {
   background-color: var(--default-bg);
 }
 
@@ -28,14 +34,16 @@ html {
 }
 
 @keyframes fade-in {
+
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
 
 .fade-in-effect {
-  animation: fade-in 1.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  animation: fade-in 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }

@@ -47,7 +47,7 @@ const ExploreIngredients = () => {
   if (ingredients.length === 0) return <Loading />;
 
   return (
-    <div>
+    <div className="fade-in-effect bg-default">
       <Header pageTitle="Explorar Ingredientes" showSearch={ false } />
       <CardGroup className="d-flex flex-wrap justify-content-around mb-5 mt-4">
         {ingredients.map(({ ingredientName, ingredientImgSrc }, index) => (
@@ -66,7 +66,12 @@ const ExploreIngredients = () => {
             />
             <Card.Header
               className="d-flex align-items-center justify-content-center"
-              style={ { height: '100%' } }
+              style={ {
+                height: '100%',
+                color: 'white',
+                backgroundColor: '#1B4332',
+                borderRadius: '0 0 0.25rem 0.25rem',
+              } }
               data-testid={ `${index}-card-name` }
             >
               {ingredientName}

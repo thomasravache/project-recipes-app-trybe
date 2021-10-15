@@ -10,19 +10,19 @@ const ExplorePage = () => {
   const { searchOrHeader } = useContext(RecipesContext);
   const history = useHistory();
   return (
-    <div className="fade-in-effect">
+    <div className="fade-in-effect bg-default">
       <Header pageTitle="Explorar" showSearch={ false } />
       {searchOrHeader ? <SearchBar /> : '' }
-      <Stack gap={ 2 } className="col-md-5 mx-auto mt-4">
+      <Stack gap={ 2 } className="col-md-5 mx-auto mt-4 bg-default">
         <Button
-          variant="secondary"
+          variant="success"
           data-testid="explore-food"
           onClick={ () => history.push('/explorar/comidas') }
         >
           Explorar Comidas
         </Button>
         <Button
-          variant="secondary"
+          variant="success"
           data-testid="explore-drinks"
           onClick={ () => history.push('/explorar/bebidas') }
         >

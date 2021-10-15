@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Button, Stack } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import './styles/profile.css';
 
@@ -26,36 +27,34 @@ const Profile = () => {
 
   return (
     <div className="text-center">
-      <p data-testid="profile-email">
+      <h4 data-testid="profile-email">
         { email }
-      </p>
+      </h4>
+      <Stack gap={ 2 } className="col-md-5 mx-auto mt-4">
+        <Button
+          variant="success"
+          data-testid="profile-done-btn"
+          onClick={ () => handleClick('/receitas-feitas') }
+        >
+          Receitas Feitas
+        </Button>
 
-      <button
-        type="button"
-        className="btn btn-outline-dark btn-settings"
-        data-testid="profile-done-btn"
-        onClick={ () => handleClick('/receitas-feitas') }
-      >
-        Receitas Feitas
-      </button>
+        <Button
+          variant="success"
+          onClick={ () => handleClick('/receitas-favoritas') }
+          data-testid="profile-favorite-btn"
+        >
+          Receitas Favoritas
+        </Button>
 
-      <button
-        type="button"
-        className="btn btn-outline-dark btn-settings"
-        onClick={ () => handleClick('/receitas-favoritas') }
-        data-testid="profile-favorite-btn"
-      >
-        Receitas Favoritas
-      </button>
-
-      <button
-        type="button"
-        className="btn btn-outline-danger btn-settings"
-        data-testid="profile-logout-btn"
-        onClick={ logout }
-      >
-        Sair
-      </button>
+        <Button
+          variant="danger"
+          data-testid="profile-logout-btn"
+          onClick={ logout }
+        >
+          Sair
+        </Button>
+      </Stack>
     </div>
   );
 };

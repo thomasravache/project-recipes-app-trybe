@@ -101,7 +101,7 @@ const DetailsRecipePage = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <Container fluid className="fade-in-effect">
+    <Container fluid className="fade-in-effect bg-default">
       <Row>
         <Col className="column-container">
           <Image
@@ -114,7 +114,7 @@ const DetailsRecipePage = () => {
         </Col>
       </Row>
       <Row className="mt-3">
-        <Col xs={ 9 }>
+        <Col xs={ 9 } className="column-container">
           <h4 data-testid="recipe-title">{recipeDetails[`str${recipeType}`]}</h4>
         </Col>
         <Col xs={ 3 }>
@@ -129,7 +129,7 @@ const DetailsRecipePage = () => {
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col className="column-container">
           <h6 data-testid="recipe-category">{isMeal ? strCategory : strAlcoholic}</h6>
         </Col>
       </Row>
@@ -141,7 +141,7 @@ const DetailsRecipePage = () => {
               <ListGroup.Item
                 data-testid={ `${index}-ingredient-name-and-measure` }
                 key={ `${ingredient} - ${measures[index]}` }
-                variant="light"
+                variant="success"
               >
                 {`${ingredient} - ${measures[index] === undefined
                   ? 'to taste'
@@ -152,7 +152,7 @@ const DetailsRecipePage = () => {
         </Col>
       </Row>
       <Row style={ { marginTop: '1rem' } }>
-        <Col>
+        <Col className="column-container">
           <h5>Instructions</h5>
           <p data-testid="instructions">{ strInstructions }</p>
         </Col>
@@ -170,7 +170,7 @@ const DetailsRecipePage = () => {
         </Row>
       )}
       <Row style={ { marginTop: '1rem' } }>
-        <Col>
+        <Col className="column-container">
           <h5>Recommended</h5>
         </Col>
       </Row>
@@ -183,8 +183,17 @@ const DetailsRecipePage = () => {
             >
               <Card className="card-block" style={ { width: '9.7rem' } }>
                 <Card.Img variant="top" src={ recipe[`str${recommendedType}Thumb`] } />
-                <Card.Body>
-                  <Card.Subtitle className="mb-2 text-muted">
+                <Card.Body
+                  style={ {
+                    color: 'white',
+                    backgroundColor: '#1B4332',
+                    borderRadius: '0 0 0.25rem 0.25rem',
+                  } }
+                >
+                  <Card.Subtitle
+                    className="mb-2"
+                    style={ { color: '#B7E4C7' } }
+                  >
                     {recipe.strCategory}
                   </Card.Subtitle>
                   <Card.Title
@@ -202,7 +211,7 @@ const DetailsRecipePage = () => {
         <Col>
           <div className="d-grid gap-2 btn-container">
             <Button
-              style={ { width: '100%', borderRadius: '0' } }
+              style={ { width: '100vw', borderRadius: '0' } }
               className="fixed-bottom"
               variant="success"
               type="button"

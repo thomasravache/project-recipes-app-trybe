@@ -28,6 +28,10 @@ const DetailsIcons = (props) => {
       <Col
         xs={ 5 }
         data-testid="share-btn"
+        style={ {
+          padding: '0.5rem 0',
+          marginLeft: '0.8rem',
+        } }
       >
         <Image src={ shareIcon } alt="" ref={ target } onClick={ handleShareIconClick } />
         <Overlay target={ target.current } show={ linkIsCopied } placement="bottom">
@@ -38,7 +42,13 @@ const DetailsIcons = (props) => {
           )}
         </Overlay>
       </Col>
-      <Col xs={ 5 } onClick={ handleFavoriteIconClick }>
+      <Col
+        xs={ 5 }
+        onClick={ handleFavoriteIconClick }
+        style={ {
+          padding: '0.5rem 0',
+        } }
+      >
         <img
           data-testid="favorite-btn"
           src={ isFavorite ? blackHeartIcon : whiteHeartIcon }

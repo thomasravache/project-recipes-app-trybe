@@ -9,7 +9,7 @@ const ProfilePage = () => {
   const { searchOrHeader } = useContext(RecipesContext);
 
   return (
-    <div>
+    <div className="fade-in-effect bg-default">
       <Header pageTitle="Perfil" showSearch={ false } />
       {searchOrHeader ? <SearchBar /> : '' }
       <Profile />
