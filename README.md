@@ -31,7 +31,7 @@ O objetivo do projeto foi desenvolver um app de receitas com layout de dispositi
 
 ![recipe5](https://github.com/thomasravache/img-readmes/blob/master/project-recipes-app-trybe/recipes5.gif?raw=true)
 
-![recipe6](https://github.com/thomasravache/img-readmes/blob/master/project-recipes-app-trybe/recipes5.gif?raw=true)
+![recipe6](https://github.com/thomasravache/img-readmes/blob/master/project-recipes-app-trybe/recipes6.gif?raw=true)
 
 
 # Tecnologias utilizadas
