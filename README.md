@@ -44,6 +44,14 @@ O objetivo do projeto foi desenvolver um app de receitas com layout de dispositi
 # Autor
 **Thomas Ravache**
 
+[rafaelvictor88](https://github.com/rafaelvictor88)
+
+[wesleymp](https://github.com/wesleymp)
+
+[turtore](https://github.com/turtore)
+
+[pabloalmeidac](https://github.com/pabloalmeidac)
+
 <div
   style="display: inline-block"
   align="left"     
