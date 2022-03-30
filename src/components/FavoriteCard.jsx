@@ -61,7 +61,8 @@ const FavoriteCard = ({ indexValue,
         {
           backgroundColor: '#40916C',
         }
-        }>
+      }
+    >
       <div className="img-card">
         <Link to={ `/${typeValue}s/${idValue}` }>
           <img

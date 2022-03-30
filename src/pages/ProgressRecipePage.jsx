@@ -26,6 +26,7 @@ const DetailsRecipePage = () => {
   const isMeal = pathname.includes('comidas'); // se na URL tiver 'comidas' quer dizer que é a page de comidas e retorna true
   const recipesInStorage = getListInProgress(recipeId, isMeal);
   const [buttonDisable, setButtonDisable] = useState({});
+  const [doneRecipes, setDoneRecipes] = useState([]);
 
   useEffect(() => { // useEffect responsável principalmente por fazer a requisição da receita e guardar as informações no estado recipeDetails
     const getRecipeDetails = async () => {
@@ -37,6 +38,7 @@ const DetailsRecipePage = () => {
     };
 
     getRecipeDetails();
+    console.log(recipeDetails);
   }, [isMeal, recipeId]);
 
   const getIngredientsOrMeasures = (ingredientOrMeasure) => {
@@ -83,6 +85,45 @@ const DetailsRecipePage = () => {
       ...buttonDisable,
     });
     usedIngredients(recipeId, target, isMeal);
+  };
+
+  // useEffect(() => {
+  //   const verifyDoneRecipesExistence = () => {
+  //     const doneRecipesStorage = JSON.parse(localStorage.getItem('doneRecipes'));
+  //     if (doneRecipesStorage === null) {
+  //       localStorage.setItem('doneRecipes', JSON.stringify([]));
+  //     }
+  //   };
+  //   verifyDoneRecipesExistence();
+  //   setDoneRecipes(JSON.parse(localStorage.getItem('doneRecipes')));
+  // }, []);
+
+  const handleClickEndRecipe = () => {
+    let doneRecipesStorage = JSON.parse(localStorage.getItem('doneRecipes'));
+    if (doneRecipesStorage === null) {
+      localStorage.setItem('doneRecipes', JSON.stringify([]));
+    }
+    doneRecipesStorage = JSON.parse(localStorage.getItem('doneRecipes'));
+    const currentDate = new Date().toLocaleDateString();
+    const [month, day, year] = currentDate.split('/');
+
+    const newDoneRecipe = {
+      id: recipeId,
+      type: isMeal ? 'comida' : 'bebida',
+      area: isMeal ? recipeDetails.strArea : '',
+      category: strCategory,
+      alcoholicOrNot: isMeal ? '' : strAlcoholic,
+      name: recipeDetails[`str${recipeType}`],
+      image: recipeDetails[`str${recipeType}Thumb`],
+      doneDate: `${day}/${month}/${year}`,
+      tags: recipeDetails.strTags !== null
+        ? recipeDetails.strTags.split(',')
+        : [],
+    };
+    localStorage.setItem('doneRecipes', JSON.stringify(
+      [...doneRecipesStorage.filter(({ id }) => id !== recipeId), newDoneRecipe],
+    ));
+    history.push('/receitas-feitas');
   };
 
   if (isLoading) return <Loading />;
@@ -174,7 +215,7 @@ const DetailsRecipePage = () => {
               type="button"
               size="lg"
               data-testid="finish-recipe-btn"
-              onClick={ () => history.push('/receitas-feitas') }
+              onClick={ handleClickEndRecipe }
             >
               Finalizar Receita
             </Button>

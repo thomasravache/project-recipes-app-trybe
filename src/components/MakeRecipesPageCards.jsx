@@ -25,7 +25,14 @@ const MakeRecipesCards = ({ imgValue,
   idValue,
   typeValue,
 }) => (
-  <div className="container-cards">
+  <div
+    className="container-cards"
+    style={
+      {
+        backgroundColor: '#40916C',
+      }
+    }
+  >
     <div className="img-card">
       <Link to={ `/${typeValue}s/${idValue}` }>
         <img
@@ -35,10 +42,17 @@ const MakeRecipesCards = ({ imgValue,
         />
       </Link>
     </div>
-    <div className="info-card">
+    <div
+      className="info-card"
+    >
       <span
         data-testid={ `${indexValue}-horizontal-top-text` }
         className="category-card"
+        style={
+          {
+            color: '#B7E4C7',
+          }
+        }
       >
         { `${areaValue || alcoholicOrNotValue} - ${categoryValue}` }
       </span>
@@ -46,7 +60,15 @@ const MakeRecipesCards = ({ imgValue,
         data-testid={ `${indexValue}-horizontal-name` }
         className="name-card"
       >
-        <Link to={ `/${typeValue}s/${idValue}` }>
+        <Link
+          to={ `/${typeValue}s/${idValue}` }
+          style={
+            {
+              textDecoration: 'none',
+              color: 'white',
+            }
+          }
+        >
           { nameValue }
         </Link>
       </span>

@@ -56,25 +56,33 @@ const MakeRecipesPage = () => {
         </ToggleButton>
       </ToggleButtonGroup>
       <hr />
-      {
-        doneRecipes ? doneRecipes
-          .filter((doneRecipe) => doneRecipe.type.includes(filter))
-          .map((doneRecipe, index) => (
-            <MakeRecipesCards
-              key={ index }
-              imgValue={ doneRecipe.image }
-              categoryValue={ doneRecipe.category }
-              nameValue={ doneRecipe.name }
-              dateValue={ doneRecipe.doneDate }
-              tagValue={ doneRecipe.tags }
-              indexValue={ index }
-              areaValue={ doneRecipe.area }
-              alcoholicOrNotValue={ doneRecipe.alcoholicOrNot }
-              idValue={ doneRecipe.id }
-              typeValue={ doneRecipe.type }
-            />
-          )) : 'Nenhuma receita finalizada.'
-      }
+      <div
+        style={
+          {
+            marginBottom: '4rem',
+          }
+        }
+      >
+        {
+          doneRecipes ? doneRecipes
+            .filter((doneRecipe) => doneRecipe.type.includes(filter))
+            .map((doneRecipe, index) => (
+              <MakeRecipesCards
+                key={ index }
+                imgValue={ doneRecipe.image }
+                categoryValue={ doneRecipe.category }
+                nameValue={ doneRecipe.name }
+                dateValue={ doneRecipe.doneDate }
+                tagValue={ doneRecipe.tags }
+                indexValue={ index }
+                areaValue={ doneRecipe.area }
+                alcoholicOrNotValue={ doneRecipe.alcoholicOrNot }
+                idValue={ doneRecipe.id }
+                typeValue={ doneRecipe.type }
+              />
+            )) : 'Nenhuma receita finalizada.'
+        }
+      </div>
       <Footer />
     </div>
   );
