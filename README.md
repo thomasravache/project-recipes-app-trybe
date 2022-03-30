@@ -41,7 +41,7 @@ O objetivo do projeto foi desenvolver um app de receitas com layout de dispositi
 - Local Storage
 - Context API
 
-# Autor
+# Autores
 **Thomas Ravache**
 
 [rafaelvictor88](https://github.com/rafaelvictor88)
@@ -51,6 +51,7 @@ O objetivo do projeto foi desenvolver um app de receitas com layout de dispositi
 [turtore](https://github.com/turtore)
 
 [pabloalmeidac](https://github.com/pabloalmeidac)
+
 
 <div
   style="display: inline-block"
